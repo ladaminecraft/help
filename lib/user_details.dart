@@ -31,23 +31,17 @@ class UserDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    user.name,
+                    user.city_name,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    user.email,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
+                  
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    user.phoneNumber,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  )
+                  
                 ],
               ),
             );

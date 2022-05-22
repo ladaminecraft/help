@@ -37,6 +37,10 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
         emit( DashboardError(error: response.statusCode.toString()));
       }
       final decodedResponse = jsonDecode(response.body);
+
+      final updatedUserList = await userRepository.addUser(event.);
+      emit(DashboardLoaded(userList: updatedUserList));
+
       emit(DashboardLoaded(userList: decodedResponse));
     } catch (e) {
       emit( DashboardError(error: e.toString()));

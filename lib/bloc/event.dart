@@ -15,6 +15,7 @@ abstract class DashboardEvent extends Equatable {
 class LoadDataEvent extends DashboardEvent {
   final String url1;
   final String url2;
+  final User user;
  const LoadDataEvent({required this.url1,required this.url2,});}
 
 

@@ -14,11 +14,11 @@ class UserTile extends StatelessWidget {
     Key? key,
     required this.user,
     required this.index,
-    required this.showUserUpdateDialog,
+   // required this.showUserUpdateDialog,
   }) : super(key: key);
   final User user;
   final int index;
-  final VoidCallback showUserUpdateDialog;
+ // final VoidCallback showUserUpdateDialog;
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +52,8 @@ class UserTile extends StatelessWidget {
               (index + 1).toString(),
             ),
           ),
-          title: Text(user.name),
-          subtitle: Text(user.email),
-          trailing: GestureDetector(
-            onTap: () {
-              showUserUpdateDialog();
-            },
-            child: const Icon(
-              Icons.update,
-            ),
-          ),
+          title: Text(user.city_name),
+         
         ),
       ),
     );

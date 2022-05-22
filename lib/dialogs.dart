@@ -10,9 +10,9 @@ import 'model/user_model.dart';
 Future<dynamic> showUserAddDialog(
   BuildContext context,
 ) {
-  final nameCtlr = TextEditingController();
-  final emailCtlr = TextEditingController();
-  final phoneCtlr = TextEditingController();
+  final con1 = TextEditingController();
+  final con2 = TextEditingController();
+
   return showDialog(
     context: context,
     builder: (_) => AlertDialog(
@@ -21,42 +21,36 @@ Future<dynamic> showUserAddDialog(
         child: Column(
           children: [
             TextField(
-              controller: nameCtlr,
+              controller: con1,
               decoration: const InputDecoration(
                 labelText: "Name",
               ),
             ),
             TextField(
-              controller: emailCtlr,
+              controller: con2,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: "Email",
               ),
             ),
-            TextField(
-              controller: phoneCtlr,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: "Phone",
-              ),
-            ),
+            
             const SizedBox(
               height: 10,
             ),
             ElevatedButton(
               onPressed: () {
-                final user = User(
-                  name: nameCtlr.text,
-                  email: emailCtlr.text,
-                  phoneNumber: phoneCtlr.text,
-                  id: const Uuid().v4(),
-                );
+                //final user = User(
+                  //url1: url1.text,            
+                  //id: const Uuid().v4(),
+                //);
+                String url1 = con1.text;
+                String url2 = con2.text;
                 BlocProvider.of<DashboardBloc>(context).add(
-                  AddUserEvent(user: user),
+                  LoadDataEvent(url1: url1, url2: url2),
                 );
-                nameCtlr.clear();
-                emailCtlr.clear();
-                phoneCtlr.clear();
+                
+                final user =User(city_name: c)
+             
                 Navigator.pop(context);
               },
               child: const Text("Add"),
@@ -68,67 +62,3 @@ Future<dynamic> showUserAddDialog(
   );
 }
 
-Future<dynamic> showUserUpdateDialog(
-  BuildContext context,
-  User user,
-) {
-  final nameCtlr = TextEditingController();
-  final emailCtlr = TextEditingController();
-  final phoneCtlr = TextEditingController();
-  nameCtlr.text = user.name;
-  emailCtlr.text = user.email;
-  phoneCtlr.text = user.phoneNumber;
-  return showDialog(
-    context: context,
-    builder: (_) => AlertDialog(
-      content: SizedBox(
-        height: 250,
-        child: Column(
-          children: [
-            TextField(
-              controller: nameCtlr,
-              decoration: const InputDecoration(
-                labelText: "Name",
-              ),
-            ),
-            TextField(
-              controller: emailCtlr,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                labelText: "Email",
-              ),
-            ),
-            TextField(
-              controller: phoneCtlr,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: "Phone",
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                final updatedUser = User(
-                  name: nameCtlr.text,
-                  email: emailCtlr.text,
-                  phoneNumber: phoneCtlr.text,
-                  id: user.id,
-                );
-                BlocProvider.of<DashboardBloc>(context).add(
-                  UpdateUserEvent(user: updatedUser),
-                );
-                nameCtlr.clear();
-                emailCtlr.clear();
-                phoneCtlr.clear();
-                Navigator.pop(context);
-              },
-              child: const Text("Update"),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}

@@ -20,7 +20,9 @@ class DashboardPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          
+          showUserAddDialog(
+            context,   
+          );       
         },
         child: const Icon(Icons.add),
       ),
@@ -45,12 +47,7 @@ class DashboardPage extends StatelessWidget {
                   return UserTile(
                     user: state.userList[index],
                     index: index,
-                    showUserUpdateDialog: () {
-                      showUserUpdateDialog(
-                        context,
-                        state.userList[index],
-                      );
-                    },
+                   
                   );
                 },
               );
